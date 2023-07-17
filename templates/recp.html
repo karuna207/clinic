@@ -1,0 +1,145 @@
+<html lang="en">
+    {%load static%}
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="new.css">
+      
+      <title>smc clinic receptionist window</title>
+      <style>
+        *{
+          margin: 0;
+          padding: 0;
+        }
+        body {
+            background-image: url("{% static 'receptionisthomenew.jpg' %}");
+            background-size:70%;
+            background-position:center;
+            
+        }
+        
+  
+        
+        button{
+          border: none;
+          cursor: pointer;
+          appearance: none;
+          background-color: inherit;
+          
+          transition: transform .7s ease-in-out;
+          margin-left:10px;
+  
+        }
+        button:hover{
+          transform: rotate(360deg);
+  
+        }
+        img{
+          width: 70px;
+          height: 70px;
+        }
+        h1{
+            text-align:center;
+            color:rgb(212, 9, 9);
+            padding:20px;
+            font-family:'Times New Roman';
+        }
+        
+        
+     
+        .GFG {
+            background-color: rgb(238, 227, 227);
+            background-image: url("{% static 'button.jpg' %}");
+            border: 2px solid black;
+            color: rgb(0, 0, 0);
+            padding: 5px 10px;
+            text-align: center;
+            display: inline-table;
+            font-size: 15px;
+            margin: 10px 30px;
+            cursor: pointer;
+            float: left;
+        }
+        .GFG1 {
+            background-color: rgb(238, 227, 227);
+            background-image: url("{% static 'button.jpg' %}");
+            border: 2px solid black;
+            color: rgb(0, 0, 0);
+            padding: 5px 10px;
+            text-align: center;
+            display: inline-table;
+            font-size: 15px;
+            margin: 10px 30px;
+            cursor: pointer;
+            float: right;
+        }
+         </style>
+  
+   </head>
+   <body>
+      
+      <h1> Receptionist Home Page </h1>
+      
+      <div class="main-options">
+         <a href="/receptionist/recephome/addpatient">
+            <br><br><button class="GFG" >
+                <img src="D:\c++ course\python\clinic\home\static\button.jpg" alt="buttonpng"  />
+                <b>Add Patient</b>
+            </button>
+            
+          
+         </a>
+         <a href="/receptionist/recephome/dequeuecsp">
+            <button class="GFG1">
+                <img src="C:\Users\jeesee\flat-hand-drawn-patient-taking-medical-examination-illustration_23-2148859982.avif" alt="buttonpng"  />
+                <b>Remove Patient from csp doctor queue</b>
+               
+            </button><br><br><br>
+           
+        </a>
+        <a href="/receptionist/recephome/dequeuegendoc">
+            <br><br><br><br><br><br><button class="GFG1">
+                <img src="C:\Users\jeesee\flat-hand-drawn-patient-taking-medical-examination-illustration_23-2148859982.avif" alt="buttonpng"  />
+                <b>Remove patient from general doctor queue</b>
+                
+            </button>
+           
+        </a>
+        <a href="/receptionist/recephome/emergency">
+            <button class="GFG">
+                <img src="C:\Users\jeesee\flat-hand-drawn-patient-taking-medical-examination-illustration_23-2148859982.avif" alt="buttonpng"  />
+                <b>emergency</b>
+               
+            </button><br><br><br><br><br>
+        
+     </a>
+     <a href="/receptionist/recephome/showqueuecsp">
+        <br><br><button class="GFG">
+            <img src="C:\Users\jeesee\flat-hand-drawn-patient-taking-medical-examination-illustration_23-2148859982.avif" alt="buttonpng"  />
+            <b>Show csp queue</b>
+           
+           
+        </button><br>
+       
+    </a>
+    <a href="/receptionist/recephome/showqueuegendoc">
+        <button class="GFG1">
+            <img src="C:\Users\jeesee\flat-hand-drawn-patient-taking-medical-examination-illustration_23-2148859982.avif" alt="buttonpng"  />
+            <b>Show general doctor queue</b>
+           
+        </button><br>
+       
+    </a>
+    <a href="/receptionist/recephome/clearappointments">
+        <button class="GFG1">
+            <img src="C:\Users\jeesee\flat-hand-drawn-patient-taking-medical-examination-illustration_23-2148859982.avif" alt="buttonpng"  />
+            <b>clear all appointments</b>
+           
+        </button><br>
+       
+    </a>
+    
+      
+   
+   </body>
+
