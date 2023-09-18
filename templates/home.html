@@ -1,12 +1,14 @@
 <html  lang="en" dir="ltr">
-	{%load static %}
 	<head>
 		<meta charset="utf-8">
 		<title>Responsive Navbar</title>
 		<meta name='viewport' content="width=device-width, intial-scale=1.0">
 		<link rel="stylesheet" href="style.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;700&family=Montserrat:wght@300;400;700;900&family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
         <script src="htpps://kit.fontawesome.com/a076d05399.js" crossorgin="anonymous"></script>
-
+		<script src="https://kit.fontawesome.com/4a3937abc9.js" crossorigin="anonymous"></script>
 	</head>
 	<style>
 		*{
@@ -18,19 +20,19 @@
 		
 		}
 		body{
-			font-family:montserrat;
-			background-image:url("{% static 'homenew.jpg' %}");;
-			background-size:120%;
-			background-position:center;
-
-			
+			font-family: montserrat;
+			background-image: url('https://img.freepik.com/free-vector/clean-medical-background_53876-116875.jpg');
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-attachment: fixed;
 		}
-		nav{background:#0082e6;
+		nav{
+			background:#5eafb2;
 			height:80px;
 			width:100%;
 		}
 		label.logo{
-			color:white;
+			color:rgb(0, 0, 0);
 			font: size 35px;
 			line-height:80px;
 			padding:0 100px;
@@ -43,12 +45,12 @@
 			display:inline-block;line-height:80px;margin:0 5px;
 		}
 		nav ul li a{
-			color:white;font-size:17px;padding:7px 13px;border-radius:3px;text-transform:uppercase;
+			color:rgb(0, 0, 0);font-size:17px;font-weight: 700;padding:7px 13px;border-radius:3px;text-transform:uppercase;
 		}
 		
 		.checkbtn{
 			font-size:30px;
-			color:white;
+			color:rgb(0, 0, 0);
 			float:right;
 			line-height:80px;
 			margin: right 40px;cursor:pointer;
@@ -67,6 +69,9 @@
 		@media (max-width:858px){
 			.checkbtn{
 				display:block;
+			}
+			nav{
+				display: none;
 			}
 			ul{
 				position:fixed;
@@ -112,24 +117,115 @@
 		
 		</style>		
 	<body style="font-size:24px;" >
-		
+		<section id="Home">
+			<div class="navbar">
+				<nav>
+					<!-- <label><i class="fas fa-bars"></i></label> -->
+					<label class="logo"><a href="#Home" style="color: rgb(0, 0, 0);">SMC CLINIC</a></label>
+					<ul>
+						<li><a href="#Home">Home</a></li>
+						<li><a href="/doctor">DOCTOR</a></li>
+						<li><a href="/receptionist">RECEPTIONIST</a></li>
+						<li><a href="/patient">PATIENT</a></li>
+						<li><a href="#Contact">Contact</a></li>
+					</ul>
+				</nav>
+			</div>
+			<div class="header">
+				<h1>
+					Best Doctors in Himachal Pradesh
+				</h1>
+			</div>
+			<div class="doctor-container">
+				<div class="doctor-info">
+					<div class="doctor-details">
+						<div class="doc-img">
+							<img src="https://onemg-consults.gumlet.io/profile_image/35325/a02f6b62-04ce-45ed-be55-553b3e7e8db9.jpg" alt="">
+						</div>
+						<div class="details">
+							<p class="doc-name">Dr A P Prem Kumar</p>
+							<p>Neurologist</p>
+							<p>15 Years Exp</p>
+						</div>
+					</div>
+					<div class="doctor-details">
+						<div class="doc-img">
+							<img src="https://thumbs.dreamstime.com/b/confident-female-doctor-office-desk-sitting-smiling-camera-health-care-prevention-concept-56351853.jpg" alt="">
+						</div>
+						<div class="details">
+							<p class="doc-name">Dr K Caroline</p>
+							<p>Cardiologist</p>
+							<p>10 Years Exp</p>
+						</div>
+					</div>
+					<div class="doctor-details">
+						<div class="doc-img">
+							<img src="https://img.freepik.com/free-photo/pleased-young-female-doctor-wearing-medical-robe-stethoscope-around-neck-standing-with-closed-posture_409827-254.jpg" alt="">
+						</div>
+						<div class="details">
+							<p class="doc-name">Dr P Kaylie</p>
+							<p>Dermatologist</p>
+							<p>5 Years Exp</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+			
 
-        
-		<nav>
-            <label><i class="fas fa-bars"></i></label>
-            <label class="logo">SMC CLINIC</label>
-			<ul>
-				<li><a href="/doctor">DOCTOR</a></li>
-				<li><a href="/receptionist">RECEPTIONIST</a></li>
-				<li><a href="/patient">PATIENT</a></li>
-			</ul>
-		</nav>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><h2>Doctor Details:</h2>
-		<h3>Dr.Vijayalakshmi Sridharan MBBS.,</h3>
-		<h3>Dr.C.Sridharan MBBS.,,DCM,FSMC.,(Child Specialist)</h3>
-      	
-     
-		
+		<section id="Contact">
+			<div class="contact slide">
+				<div class="contact-header">
+					<h1>Contact Us</h1>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse suscipit bibendum laoreet. Donec tempor commodo urna quis 
+						bibendum. Praesent in viverra dui. Maecenas in tristique lorem, nec placerat enim. Morbi vehicula magna mi, non efficitur diam 
+						bibendum vitae. Proin ligula nibh, sagittis quis maximus ac, rutrum tristique dolor. Mauris non elit consequat turpis laoreet aliquam quis in turpis. Integer efficitur id ipsum vel vehicula.
+					</p>
+				</div>
+				<div class="main-container">
+					<div class="contact-info">
+						<div class="contact-content-container">
+							<div class="content">
+								<div class="content-info">
+									<h1><i class="icon fa-solid fa-location-dot"></i>Address</h1>
+									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse suscipit bibendum</p>
+								</div>
+							</div>
+						</div>
+						<div class="contact-content-container">
+							<div class="content">
+								<div class="content-info">
+									<h1><i class="icon fa-solid fa-phone"></i>Phone</h1>
+									<p>+91 2389472348</p>
+								</div>
+							</div>
+						</div>
+						<div class="contact-content-container">
+							<div class="content">
+								<div class="content-info">
+									<h1><i class="icon fa-solid fa-envelope"></i>Email</h1>
+									<p>temporarymail@gmail.com</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="user-info-container">
+						<div class="user-info">
+							<h1>Send Message</h1>
+							<form action="" method="post" class="user-form">
+								<label for="full-name">Full Name</label><br>
+								<input type="text" name="full-name" id=""><br>
+								<label for="mail">Email</label><br>
+								<input type="email" name="mail" id=""><br>
+								<label for="message">Your Message</label><br>
+								<input type="text" name="message" id=""><br>
+								<button type="submit" class="form-button">Send</button><br>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 	</body>
 </html>
 
