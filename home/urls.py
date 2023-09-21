@@ -6,8 +6,10 @@ urlpatterns = [
     path('',views.home,name="home"),
     path('patient',views.patient,name="patient"),
     path('doctor',views.doctor,name="doctor"),
+
     path('receptionist',views.receptionist,name="receptionist"),
-    path('patient/patientform',views.makeappointment,name="appointmentform"),
+    path('patient/patienthome',views.patienthome,name="patienthome"),
+    path('patient/patienthome/patientform',views.makeappointment,name="appointmentform"),
     path('receptionist/recephome',views.recephome,name='recephome'),
     path('receptionist/recephome/addpatient',views.addpatienttoqueue, name = 'addpatientqueue'),
     # path('receptionist/recephome/dequeue',views.dequeue,name='dequeue'),

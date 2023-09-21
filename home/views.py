@@ -510,7 +510,7 @@ def patient(request):
             print(user)
             if user is not None:
                 login(request, user)
-                return redirect('/patient/patientform')
+                return redirect('/patient/patienthome')
             else:
                 return render(request, r'D:\c++ course\python\clinic\templates\patientlogin.html')
 
@@ -524,7 +524,10 @@ def patient(request):
                 return redirect('/patient/patientform')
 
     else:
-        return render(request, 'patientlogin.html')
+        return render(request, 'patientlogin.html') 
+    
+def patienthome(request):
+    return render(request,r'D:\c++ course\python\clinic\templates\index.html')
 
 
 def doctor(request):
