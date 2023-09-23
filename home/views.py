@@ -5,9 +5,18 @@ from django.contrib.auth import logout, authenticate, login
 import csv
 from abc import ABC, abstractmethod
 from datetime import datetime
+import qrcode
+from PIL import Image
+from io import BytesIO
+import pymongo
+from .models import person_collection
+import base64
+from pymongo import MongoClient
 
 
 # from LinkedQueue import LinkedQueue
+
+
 
 
 class AbstractTree(ABC):
@@ -495,6 +504,9 @@ def patient(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
+        global name
+        def name():
+            return username
         if not username.endswith('pat'):
             return redirect('home')
 
@@ -512,23 +524,93 @@ def patient(request):
                 login(request, user)
                 return redirect('/patient/patienthome')
             else:
-                return render(request, r'D:\c++ course\python\clinic\templates\patientlogin.html')
+                return render(request, 'patientlogin.html')
 
         elif 'signup' in request.POST:
             if User.objects.filter(username=username).exists():
                 # User with the given username already exists
-                return render(request, r'D:\c++ course\python\clinic\templates\response2.html')
+                return render(request, 'response2.html')
             else:
                 user = User.objects.create_user(
                     username=username, password=password)
-                return redirect('/patient/patientform')
+                qr = qrcode.QRCode(
+                    version=1,
+                    error_correction=qrcode.constants.ERROR_CORRECT_L,
+                    box_size=10,
+                    border=4,
+                )
+                qr.add_data('username: '+username)
+                qr.make(fit=True)
+                qr_img = qr.make_image(fill_color="black", back_color="white")
+
+                # Save the QR code image to a BytesIO object
+                img_buffer = BytesIO()
+                qr_img.save(img_buffer, format="PNG")
+                img_binary = img_buffer.getvalue()
+                
+                # Store the QR code in MongoDB
+                qr_data = {
+                    "name": username,
+                    "password": password,
+                    "qr_code_image": img_binary,
+                }
+                person_collection.insert_one(qr_data)
+                return redirect('/patient/patienthome')
 
     else:
         return render(request, 'patientlogin.html') 
     
 def patienthome(request):
-    return render(request,r'D:\c++ course\python\clinic\templates\index.html')
+    return render(request,'index.html')
+def patientqrcode(request):
 
+    # Retrieve QR code data for a specific patient (replace with actual patient ID)
+    patient_id_to_retrieve = name()
+    patient_qr_data = person_collection.find_one({"name": patient_id_to_retrieve})
+
+    if patient_qr_data:
+        img_data = patient_qr_data["qr_code_image"]
+
+        # Encode binary image data as base64
+        img_base64 = base64.b64encode(img_data).decode('utf-8')
+
+        # Generate dynamic HTML
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>QR Code Display</title>
+        </head>
+        <body>
+            <h1>QR Code Display</h1>
+            <p>Scan the QR code below:</p>
+            <img src="data:image/png;base64,{img_base64}" alt="QR Code">
+        </body>
+        </html>
+        """
+
+        # Write HTML to a file
+        with open("templates/qrcode_display.html", "w") as html_file:
+            html_file.write(html_content)
+
+        return render(request,"qrcode_display.html")
+    else:
+        return HttpResponse("Patient not found.")
+
+
+def filter_doctors(request):
+    if request.method == 'POST':
+        selected_category = request.POST['category']
+        # Connect to the MongoDB database
+        client = MongoClient('mongodb://localhost:27017/')  # Replace with your MongoDB connection URL
+        db = client['doctors']  # Replace with your MongoDB database name
+            # Query the MongoDB collection for doctors in the selected category
+        doctors_collection = db['doctor_list']  # Replace with your MongoDB collection name
+        doctors = list(doctors_collection.find({'speciality': selected_category}))
+    else:
+        doctors = []
+
+    return render(request, 'filter_doctors.html', {'doctors': doctors})
 
 def doctor(request):
     if request.method == "POST":
@@ -547,7 +629,7 @@ def doctor(request):
                 elif username == 'vijayalakshmidoc':
                     return redirect('/doctor/doctorgendochome')
             else:
-                return render(request, r'D:\c++ course\python\clinic\templates\doctorlogin.html')
+                return render(request, 'doctorlogin.html')
 
         # elif 'signup' in request.POST:
         #     if User.objects.filter(username=username).exists():
@@ -614,7 +696,7 @@ def makeappointment(request):
                 pat_name, pat_age, pat_emailid, patgen, doctor_ass, pat_num)
             if p_obj.p_doc == 'csp':
                 fr = open(
-                    r'D:\c++ course\python\clinic\appointment\appointmentcsp.csv', 'r')
+                    'appointmentcsp.csv', 'r')
                 reader = csv.reader(fr)
                 reader = list(reader)
                 print(len(reader))
@@ -632,7 +714,7 @@ def makeappointment(request):
                 if len(reader) < 3:
 
                     fw = open(
-                        r'D:\c++ course\python\clinic\appointment\appointmentcsp.csv', 'a', newline="")
+                        'appointmentcsp.csv', 'a', newline="")
                     writer = csv.writer(fw)
                     data = [pat_name, pat_age, pat_emailid,
                             patgen, doctor_ass, pat_num]
@@ -653,13 +735,13 @@ def makeappointment(request):
                 else:
                     return render(
                         request,
-                        r'D:\c++ course\python\clinic\templates\removepatientdisplay.html',
+                        'removepatientdisplay.html',
                         {"alertmessage": "appointments are filled!"},
                     )
 
             elif p_obj.p_doc == 'gendoc':
                 fr = open(
-                    r'D:\c++ course\python\clinic\appointment\appointmentgendoc.csv', 'r')
+                    'appointmentgendoc.csv', 'r')
                 reader = csv.reader(fr)
                 reader = list(reader)
                 # if len(reader)!=0:
@@ -860,20 +942,20 @@ def addpat(request):
 
 
 def recephome(request):
-    return render(request, r'D:\c++ course\python\clinic\templates\recp.html')
+    return render(request, 'recp.html')
 
 
 def doccsphome(request):
-    return render(request, r'D:\c++ course\python\clinic\templates\doctorcsphome.html')
+    return render(request, 'doctorcsphome.html')
 
 
 def gendochome(request):
-    return render(request, r'D:\c++ course\python\clinic\templates\doctorgendoc.html')
+    return render(request, 'doctorgendoc.html')
 
 
 def patientcsphistory(request):
     if request.method != 'POST':
-        return render(request, r'D:\c++ course\python\clinic\templates\searchhistorycsp.html')
+        return render(request, 'searchhistorycsp.html')
     else:
         if 'submit' in request.POST:
 
@@ -885,7 +967,7 @@ def patientcsphistory(request):
 
                 if pos == None:
                     return render(request,
-                              r'D:\c++ course\python\clinic\templates\removepatientdisplay.html',
+                              'removepatientdisplay.html',
                               {"alertmessage": f'{pat_num} history not found'},
                               )
                     
@@ -896,14 +978,14 @@ def patientcsphistory(request):
                     return render(request,'patienthistoryviewcsp.html',context)
             else:
                 return render(request,
-                              r'D:\c++ course\python\clinic\templates\removepatientdisplay.html',
+                              'removepatientdisplay.html',
                               {"alertmessage": f'{pat_num} history not found'},
                               )
                 
 
 def presriptioncsp(request):
     if request.method != 'POST':
-        return render(request, r'D:\c++ course\python\clinic\templates\prescriptioncsp.html')
+        return render(request, 'prescriptioncsp.html')
     else:
         if 'submit' in request.POST:
 

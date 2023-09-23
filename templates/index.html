@@ -220,21 +220,22 @@
         <nav class="menu" tabindex="0" style="margin-top: 56px;">
           <div class="smartphone-menu-trigger"></div>
           <header class="avatar">
-            <img src="{% static patient.profile_pic.url %}" alt="Profile Pic" />
+            <img src="https://cdn-icons-png.flaticon.com/512/1533/1533506.png" alt="Profile Pic" />
             <br><br>
             <h6 style='font-weight: 700;'>Patient</h6>
             
           </header>
           <ul>
-            <li tabindex="0" class="icon-dashboard"> <a style="color:rgb(0, 0, 0); text-decoration:none;font-weight: 700;" href="/patient-dashboard"><span>Dashboard</span></a> </li>
-            <li tabindex="0" class="icon-calendar"> <a style="color:rgb(0, 0, 0); text-decoration:none;font-weight: 700;" href="/patient/patienthome/patientform"><span>Appointments</span></a></li>
+            <li tabindex="0" class="icon-dashboard"> <a style="color:rgb(0, 0, 0); text-decoration:none;font-weight: 700;" href="/"><span>Home</span></a> </li>
             <li tabindex="0" class="icon-users"> <a style="color:rgb(0, 0, 0); text-decoration:none;font-weight: 700;" href="/patient-view-doctor"><span>Doctors</span></a></li>
            
-            <li tabindex="0" class="icon-users"> <a style="color:rgb(0, 0, 0); text-decoration:none;font-weight: 700;" href="/patient-discharge"><span>Discharge</span></a></li>
+            <li tabindex="0" class="icon-dashboard"> <a style="color:rgb(0, 0, 0); text-decoration:none;font-weight: 700;" href="/patient/patientqrcode"><span>View QR Code</span></a> </li>
+
           </ul>
         </nav>
         <main>
           <!-- nav start -->
+
           <div class="bs-example">
             <nav class="navbar navbar-expand-md  navbar-dark fixed-top" style="background:#5eafb2;">
               <a href="/patient-dashboard" class="navbar-brand" style="color: black;font-weight: 700;">HOSPITAL MANAGEMENT</a>
@@ -250,19 +251,34 @@
             </nav>
           </div>
           <!-- nav end -->
+          <div class="categoryform">
+            <h1>Filter Doctors by Disease</h1>
+
+            <form method="POST" action="patienthome/filterdoctor">
+              {% csrf_token %}
+              <label for="category">Select a Disease Category:</label>
+              <select name="category">
+                  <option value="cardiology">Cardiology</option>
+                  <option value="dermatology">Dermatology</option>
+                  <option value="orthopedics">Orthopedics</option>
+                  <!-- Add more disease categories as needed -->
+              </select>
+              <input type="submit" value="Filter">
+            </form>
+          </div>
           <br><br>
          
           <br><br><br><br><br><br><br>
           
         </main>
+      </body>
 <meta charset="utf-8">
 <title>Chatbot in JavaScript | CodingNepal</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="{%static 'styles.css'%}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Google Fonts Link For Icons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
-<script src="script.js" defer></script>
 </head>
 <body>
 <button class="chatbot-toggler">
@@ -285,5 +301,6 @@
 <span id="send-btn" class="material-symbols-rounded">send</span>
 </div>
 </div>
+<script src="{%static 'script.js'%}" defer></script>
 </body>
 </html>

@@ -6,10 +6,11 @@ urlpatterns = [
     path('',views.home,name="home"),
     path('patient',views.patient,name="patient"),
     path('doctor',views.doctor,name="doctor"),
-
+    path('patient/patienthome/filterdoctor',views.filter_doctors,name='filter'),
     path('receptionist',views.receptionist,name="receptionist"),
     path('patient/patienthome',views.patienthome,name="patienthome"),
-    path('patient/patienthome/patientform',views.makeappointment,name="appointmentform"),
+    path('patient/patientqrcode',views.patientqrcode,name="patient"),
+    path('patient/patienthome/filterdoctors/patientform',views.makeappointment,name="appointmentform"),
     path('receptionist/recephome',views.recephome,name='recephome'),
     path('receptionist/recephome/addpatient',views.addpatienttoqueue, name = 'addpatientqueue'),
     # path('receptionist/recephome/dequeue',views.dequeue,name='dequeue'),

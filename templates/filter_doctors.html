@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    {%load static%}
+<head>
+    <title>Filter Doctors by Disease</title>
+    <link rel="stylesheet" href="{%static 'filterdoctor.css'%}">
+</head>
+<body>
+
+    <h2>Doctors in the Selected Category:</h2>
+    <ul>
+        {% if doctors %}
+            {% for doctor in doctors %}
+                <li><a href="filterdoctors/patientform">{{ doctor.name }} ({{ doctor.speciality }})</a></li>
+            {% endfor %}
+        {% else %}
+            <li>No doctors found in this category.</li>
+        {% endif %}
+    </ul>
+</body>
+</html>
