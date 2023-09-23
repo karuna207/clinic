@@ -4,158 +4,35 @@
 <head>
  
   <title>SMC CLINIC RECEPTIONIST LOGIN</title>
-  <h1>SMC CLINIC RECEPTIONIST LOGIN</h1>
-  <style>
-    *{
-        margin:0;
-        padding:0;
-        font-family: sans-serif;
-    }
-   
-    h1
-    {
-        text-align:center;
-    }
-    .hero{
-        height:100%;
-        width:100%;
-        background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url("{% static 'background.jpg' %}");
-        background-position: center;
-        background-size:cover;
-        position:absolute;
-    }
-    .form-box{
-        width:380px;
-        height:480px;
-        position:relative;
-        margin:6% auto;
-        background:#fff;
-        padding:5px;
-    }
-    .button-box{
-        width:100px;
-        margin:35px auto;
-        position:relative;
-        box-shadow:0 0 20px 9px #ff61241f;
-        border-radius:30px;
-    }
-    .toggle-btn{
-        padding:10px 30px;
-        cursor:pointer;
-        background:transparent;
-        border:0;
-        outline:none;
-        position:relative;
-    }
-    #btn{
-        top:0;
-        left:0;
-        position:absolute;
-        width:110px;
-        height:100%;
-        background: linear-gradient(to right,#ff105f,#ffad06);
-        border-radius:30px;
-        transition:.5s;
-    
-    }
-    .social-icons{
-        margin:30px auto;
-        text-align:center;
-    }
-    .social-icons img{
-        width:30px;
-        margin:0 12px;
-        box-shadow: 0 0 20px 0 #7f7f7f3d;
-        cursor:pointer;
-        border-radius:50%;
-        
-    }
-    .input-group{
-        {% comment %} top:180px;
-        position:absolute;
-        width:280px;
-        transition: .5s;
-        margin:30px auto;
-        text-align:center; {% endcomment %}
-        max-width: 400px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    
-    }
-    
-  
-    
-    .submit-btn{
-        width: 85%;
-        padding:10px 30px;
-        cursor:pointer;
-        display:block;
-        margin:auto;
-        background: linear-gradient(to right,#ff105f,#ffad06);
-        border:0;
-        outline: none;
-        border-radius:30px;
-    }
-    .chech-box{
-        margin:30px 10px 30px 0;
-    
-    }
-    span{
-        color:#777;
-        font-size:12px;
-        bottom:68px;
-        position:absolute;
-    
-    }
-    #Login{
-        left:100px;
-    }
-   .loginbox p{
-    margin:0;
-    padding:0;
-    font-weight:bold;
-   }
-   .loginbox input{
-    width:100%;
-    margin-bottom: 20px;
-   }
-   .loginbox input[type="text"], input[type="password"]
-   {
-    border:none;
-    border-bottom:1px solid #fff;
-    background:transparent;
-    outline:none;
-   }
-    </style>
-    
+    <link rel="stylesheet" href="{%static 'login.css'%}">    
 </head>
 <body>
-    
+    <h1 style="text-align: center;">SMC CLINIC ADMIN LOGIN</h1>
+    <section class="container forms">
+        <div class="form login">
+            <div class="form-content">
+                <header>Login</header>
+                <form action="/receptionist" method="post">
+                    {% csrf_token %}
+                    <div class="field input-field">
+                        <input type="text" name="username" placeholder="Username (should end with rep)" class="input">
+                    </div>
 
-    {%load static%}
-    <div class='hero'>
-        <div class="social-icons">
-            <img src="{% static 'gp.png'%}">
-            <img src="{% static 'fb.png'%}">
-            <img src="{% static 'tw.png'%}">
+                    <div class="field input-field">
+                        <input type="password" name="password" placeholder="Password" class="password">
+                        <i class='bx bx-hide eye-icon'></i>
+                    </div>
+
+                    <div class="form-link">
+                        <a href="#" class="forgot-pass">Forgot password?</a>
+                    </div>
+
+                    <div class="field button-field">
+                        <button type="submit" class="submit-btn" name="login">Login</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        <div class="loginbox">
-        <form class="input-group" method='post' action='/receptionist'>
-            {% csrf_token %}
-            <p>Username</p>
-            <input type="text"  class="input-field" name='username' placeholder="Username(should end with rep)" required>
-            <p>Password</p>
-            <input type="password"  class="input-field" name='password' placeholder="Enter Password" required>
-            
-            <button type="submit" text-align:"center" class="submit-btn" name="login">Login</button>
-           
-        </form>
-        
-        
-        </div>
-    </div>
+    </section>
 
     </body>

@@ -1,0 +1,103 @@
+/* Reset some default styles */
+body, h1, p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Style for the body */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+  
+  /* Style for the main container */
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  /* Style for the registration form container */
+  .register {
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    margin: 100px;
+
+  }
+  
+  /* Style for the h1 heading */
+  .register h1 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for labels */
+  .register label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  /* Style for form inputs */
+  .register input[type="text"],
+  .register input[type="number"],
+  .register input[type="email"],
+  .register input[type="tel"],
+  .register textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+/* Style for the radio buttons and their labels */
+.register p {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .register .gender-options {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust the gap between radio buttons and labels */
+  }
+  
+  .register .gender-options label {
+    display: inline; /* Display the labels inline */
+  }
+  
+  
+  /* Style for radio buttons and their labels */
+  .register p {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .register input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  /* Style for submit and reset buttons */
+  #submit,
+  #reset {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 10px;
+  }
+  
+  #submit:hover,
+  #reset:hover {
+   
+  
